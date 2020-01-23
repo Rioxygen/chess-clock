@@ -7,7 +7,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: rioxigen/docker-ionic:latest
+      image: beevelop/docker-ionic:latest
     steps:
       - uses: actions/checkout@v1
       - name: prepare
