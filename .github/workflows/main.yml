@@ -1,0 +1,27 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: beevelop/ionic:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache
+        uses: actions/cache@v1.1.0
+        with:
+          # A directory to store and save the cache
+          path: node_modules
+          # An explicit key for restoring and saving the cache
+          key: node_modules
+      - name: prepare 
+        run: |
+          npm i
+          npm i cordova-res native-run
+          npm i @ionic/angular-toolkit@latest
+      - name: build
+        run: |
+          ionic build
