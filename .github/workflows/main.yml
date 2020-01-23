@@ -10,14 +10,6 @@ jobs:
       image: beevelop/ionic:latest
     steps:
       - uses: actions/checkout@v1
-      - name: prepare
-        run: |
-          npm i
-          npm i cordova-res native-run
-          npm i @ionic/angular-toolkit@latest
-      - name: build
-        run: |
-          ionic build       
       - name: Cache
         uses: actions/cache@v1.1.0
         with:
@@ -25,4 +17,19 @@ jobs:
           path: node_modules
           # An explicit key for restoring and saving the cache
           key: node_modules
+      - name: prepare 
+        run: |
+          npm i
+          npm i cordova-res native-run
+          npm i @ionic/angular-toolkit@latest
+      - name: build
+        run: |
+          ionic build       
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: dist
+          # Directory containing files to upload
+          path: dist
           
