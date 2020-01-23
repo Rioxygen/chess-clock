@@ -8,13 +8,13 @@ jobs:
     container:
       image: rioxigen/docker-ionic:latest
     steps:
-    - uses: actions/checkout@v1
-    - name: checkout
-    - name: prepare
-      run: |
-        npm i
-        npm i cordova-res native-run
-        npm i @ionic/angular-toolkit@latest
-    - name: build
-      run: |
-        ionic build       
+      - uses: actions/checkout@v1
+      - name: checkout
+      - name: prepare
+        run: |
+          npm i
+          npm i cordova-res native-run
+          npm i @ionic/angular-toolkit@latest
+      - name: build
+        run: |
+          ionic build       
