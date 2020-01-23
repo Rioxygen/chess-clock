@@ -4,16 +4,17 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    container:
+      image: rioxigen/docker-ionic:latest
     steps:
     - uses: actions/checkout@v1
-    - name: Use coturiv/setup-ionic
-      uses: coturiv/setup-ionic@v1
-      with:
-        cordova-version: 8
-
-    - name: Build
+    - name: checkout
+    - name: prepare
       run: |
-        ionic cordova build android --prod
+        npm i
+        npm i cordova-res native-run
+        npm i @ionic/angular-toolkit@latest
+    - name: build
+      run: |
+        ionic build       
